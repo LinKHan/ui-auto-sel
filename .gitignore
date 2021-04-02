@@ -1,0 +1,14 @@
+
+### Folders
+target/
+test-output/
+testLogs/
+
+### Intellij ####
+.idea
+*.iws
+*.iml
+*.ipr
+
+## Mac file
+.DS
