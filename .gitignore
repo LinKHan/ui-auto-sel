@@ -3,12 +3,25 @@
 target/
 test-output/
 testLogs/
+.idea/
 
 ### Intellij ####
-.idea
 *.iws
 *.iml
 *.ipr
 
 ## Mac file
-.DS
+.DS_store
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.cmd
+*.classpath
+*.settings
+*.project
+*.mvn
