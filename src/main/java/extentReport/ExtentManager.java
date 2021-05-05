@@ -3,15 +3,14 @@ package extentReport;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import utilAPI.DateFormatAPI;
 
 public class ExtentManager {
 
     private static ExtentManager extentManager;
     private static ExtentReports extent;
     public static String projDir = System.getProperty("user.dir");
+    private static DateFormatAPI dateFormatAPI;
 
     public static synchronized ExtentManager getInstance(){
         if (extentManager == null){
@@ -21,8 +20,9 @@ public class ExtentManager {
     }
 
     public static ExtentReports setUpExtentReport(){
-        String fileName = getReportName();
-        String path = projDir + "/test-output/reports/" + fileName;
+        dateFormatAPI = new DateFormatAPI();
+        String fileName = dateFormatAPI.getTimeDateMonthYear();
+        String path = projDir + "/test-output/reports/" + fileName + ".html";
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
         htmlReporter.config().setEncoding("utf-8");
         htmlReporter.config().setAutoCreateRelativePathMedia(true);
@@ -35,15 +35,5 @@ public class ExtentManager {
 
         return extent;
     }
-
-    public static String getReportName(){
-        String pattern = "MMM:dd:yyyy hh:mm:ss";
-        Date d = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String formattedDate = simpleDateFormat.format(d);
-        String fileName = "auto" + "_" + formattedDate.replace(":","_").replace(" ", "_") + ".html";
-        return fileName;
-    }
-
 
 }
